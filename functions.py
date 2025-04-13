@@ -1,19 +1,21 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
+# Fungsi untuk menampilkan menu utama
 def send_main_menu(update, context):
     keyboard = [
-        [InlineKeyboardButton("📦 Cari MOD", callback_data="menu_mod")],
-        [InlineKeyboardButton("⭐ Premium", callback_data="menu_premium")],
-        [InlineKeyboardButton("📊 Statistik", callback_data="menu_stats")],
-        [InlineKeyboardButton("❓ Bantuan", callback_data="menu_help")]
+        [InlineKeyboardButton("📦 Cari MOD", callback_data="menu_mod"),
+         InlineKeyboardButton("⭐ Premium", callback_data="menu_premium")],
+        [InlineKeyboardButton("📊 Statistik", callback_data="menu_stats"),
+         InlineKeyboardButton("❓ Bantuan", callback_data="menu_help")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    text = "Selamat datang di ModFinderBot!\nSilakan pilih menu di bawah ini:"
+    text = "Halo, selamat datang di DooGeng!\nSilakan pilih menu di bawah ini:"
     if update.message:
         update.message.reply_text(text, reply_markup=reply_markup)
     elif update.callback_query:
         update.callback_query.edit_message_text(text, reply_markup=reply_markup)
 
+# Fungsi untuk menangani callback tombol menu
 def handle_menu_callback(update, context):
     query = update.callback_query
     data = query.data
